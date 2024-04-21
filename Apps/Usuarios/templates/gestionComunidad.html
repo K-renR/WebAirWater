@@ -1,0 +1,68 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="justify-content-around">
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'adminPanel' %}">Panel Administrador</a>
+        </button>
+
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'gestionUsuarios' %}">Agregar Usuarios</a>
+        </button>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+
+        <h2>Agregar Comunidad</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarComunidad/" method="POST">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Codigo"
+                            maxlength="6" minlength="1" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtSector" name="txtSector" class="form-control" placeholder="Sector"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Comunidades</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Sector</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in comunidades%}
+                    <tr>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.sector}}</td>
+                        <td><a href="editarComunidad/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarComunidad/{{c.codigo}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock%}

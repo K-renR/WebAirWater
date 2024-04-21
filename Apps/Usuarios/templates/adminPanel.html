@@ -1,0 +1,31 @@
+{% extends "./base.html" %}
+
+{% block body %}
+
+<div class="containerAdmin">
+    <div class="containerButtons">
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'gestionUsuarios' %}">Gestion Usuarios</a>
+        </button>
+        <button class="btn btn-outline-primary">Monitoreo y analisis</button>
+        <button class="btn btn-outline-primary">Gestion Alertas</button>
+        <button class="btn btn-outline-primary">Configuracion Sistema</button>
+        <button class="btn btn-outline-primary">Solicitudes</button>
+    </div>
+    <div>
+        <div class="alert alert-primary" role="alert">
+            <div>Total Usuarios</div>
+            <div class="text-danger">120</div>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            <div>Contenedores Activos</div>
+            <div class="text-danger">22</div>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <div>Disponibilidad Agua</div>
+            <div class="text-danger">98%</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

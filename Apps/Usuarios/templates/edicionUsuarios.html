@@ -1,0 +1,79 @@
+{% extends "./base.html" %}
+
+{% block body %}
+<div class="row">
+    <div class="containerButton">
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'gestionUsuarios' %}">Panel Administrador</a>
+        </button>
+
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'gestionComunidad' %}">Agregar Comunidad</a>
+        </button>
+
+        <button class="btn btn-outline-primary">
+            <a href="{% url 'gestionUsuarios' %}">Agregar Usuarios</a>
+        </button>
+
+    </div>
+    <div class="col-md-6 offset-md-2">
+
+        <h2>Edicion Usuarios</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/edicionUsuarios/" method="POST">{% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control"
+                            value="{{usuarios.codigo}}" placeholder="Codigo" maxlength="6" minlength="1" required>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtCedula" name="txtCedula" class="form-control"
+                            value="{{usuarios.cedula}}" placeholder="Cedula de Identidad" maxlength="10" minlength="1"
+                            required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtNombres" name="txtNombres" class="form-control"
+                            value="{{usuarios.nombres}}" placeholder="Nombres" maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtApellidos" name="txtApellidos" class="form-control"
+                            value="{{usuarios.apellidos}}" placeholder="Apellidos" maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="text" id="txtDomicilio" name="txtDomicilio" class="form-control"
+                            value="{{usuarios.domicilio}}" placeholder="Domicilio" maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="email" id="txtEmail" name="txtEmail" class="form-control"
+                            value="{{usuarios.email}}" placeholder="Email" maxlength="50" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="number" id="txtTelefono" name="txtTelefono" class="form-control"
+                            value="{{usuarios.telefono}}" placeholder="Telefono" maxlength="50" required>
+                    </div>
+                    <div>
+                        <label for="rol">Escoja rol:</label>
+                        <select name="rols" id="rols">
+                            <option value="{{usuarios.rol}}">usuario</option>
+                            <option value="{{usuarios.rol}}">tecnico</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="comunidad">Escoja comunidad:</label>
+                        <select name="comunidades" id="comunidades">
+                            <option value="{{usuarios.codigo}}">{{usuarios.comunidad}}</option>
+                            <option value="{{usuarios.codigo}}">{{usuarios.comunidad}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

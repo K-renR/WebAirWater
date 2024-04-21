@@ -1,0 +1,22 @@
+{% extends "./base.html" %}
+
+{% block body %}
+{% load static %}
+
+<div class="containerHome">
+
+    <img src="{% static 'img/airWaterLogo.png' %}" alt="logoAirWater" class="img-fluid" alt="Responsive image">
+
+    {{error}}
+
+    <form action="/signUp/" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="containerButton">
+            <button type="submit" class="btn btn-outline-primary form-control">
+                Register
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

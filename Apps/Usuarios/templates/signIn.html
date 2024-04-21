@@ -1,0 +1,23 @@
+{% extends "./base.html" %}
+
+{% block body %}
+{% load static %}
+
+<div class="containerHome">
+
+    <img src="{% static 'img/airWaterLogo.png' %}" alt="logoAirWater" class="img-fluid" alt="Responsive image">
+
+    {{error}}
+
+    <form action="/signIn/" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <div class="containerButton">
+            <a href="/">forgot your password</a>
+            <button type="submit" class="btn btn-outline-primary  form-control">
+                Login
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
